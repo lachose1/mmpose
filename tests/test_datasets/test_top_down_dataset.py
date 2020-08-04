@@ -70,7 +70,7 @@ def test_top_down_COCO_dataset():
 
 
 def test_top_down_MPII_dataset():
-    dataset = 'TopDownMPIIDataset'
+    dataset = 'TopDownMpiiDataset'
     # test COCO datasets
     dataset_class = DATASETS.get(dataset)
     dataset_class.load_annotations = MagicMock()
@@ -98,7 +98,7 @@ def test_top_down_MPII_dataset():
     # Test det bbox
     data_cfg_copy = copy.deepcopy(data_cfg)
     custom_dataset = dataset_class(
-        ann_file='tests/data/test_mpii.json',
+        ann_file='tests/data/mpii/test_mpii.json',
         img_prefix='tests/data/mpii/',
         data_cfg=data_cfg_copy,
         pipeline=[])
@@ -107,7 +107,7 @@ def test_top_down_MPII_dataset():
 
 
 def test_top_down_TRB_dataset():
-    dataset = 'TopDownTRBMPIDataset'
+    dataset = 'TopDownMpiiTrbDataset'
     # test MPII TRB datasets
     dataset_class = DATASETS.get(dataset)
     dataset_class.load_annotations = MagicMock()
@@ -129,15 +129,14 @@ def test_top_down_TRB_dataset():
 
     data_cfg_copy = copy.deepcopy(data_cfg)
     _ = dataset_class(
-        ann_file='tests/data/test_trb.json',
+        ann_file='tests/data/mpii/test_mpii_trb.json',
         img_prefix='tests/data/mpii/',
         data_cfg=data_cfg_copy,
         pipeline=[],
         test_mode=False)
 
-    # Test gt bbox
     custom_dataset = dataset_class(
-        ann_file='tests/data/test_trb.json',
+        ann_file='tests/data/mpii/test_mpii_trb.json',
         img_prefix='tests/data/mpii/',
         data_cfg=data_cfg,
         pipeline=[],
