@@ -71,7 +71,7 @@ def _check_flip(origin_imgs, result_imgs):
 
 def test_bottomup_pipeline():
 
-    data_prefix = 'tests/data/coco/'
+    data_prefix = 'tests/data/'
     ann_file = osp.join(data_prefix, 'test_coco.json')
     coco = COCO(ann_file)
 

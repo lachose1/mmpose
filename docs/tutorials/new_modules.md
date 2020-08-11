@@ -2,7 +2,9 @@
 
 ## Customize optimizer
 
-A customized optimizer could be defined as following.
+An example of customized optimizer `CopyOfSGD` is defined in `mmpose/core/optimizer/copy_of_sgd.py`.
+More generally, a customized optimizer could be defined as following.
+
 Assume you want to add a optimizer named as `MyOptimizer`, which has arguments `a`, `b`, and `c`.
 You need to first implement the new optimizer in a file, e.g., in `mmpose/core/optimizer/my_optimizer.py`:
 
@@ -44,7 +46,7 @@ The users can directly set arguments following the [API doc](https://pytorch.org
 
 ## Customize optimizer constructor
 
-Some models may have some parameter-specific settings for optimization, e.g. weight decay for BatchNorm layers.
+Some models may have some parameter-specific settings for optimization, e.g. weight decay for BatchNoarm layers.
 The users can do those fine-grained parameter tuning through customizing optimizer constructor.
 
 ```

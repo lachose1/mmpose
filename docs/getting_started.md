@@ -8,7 +8,7 @@ For installation instructions, please see [install.md](install.md).
 It is recommended to symlink the dataset root to `$MMPOSE/data`.
 If your folder structure is different, you may need to change the corresponding paths in config files.
 
-**For COCO data**, please download from [COCO download](http://cocodataset.org/#download), 2017 Train/Val is needed for COCO keypoints training and validation. [HRNet-Human-Pose-Estimation](https://github.com/HRNet/HRNet-Human-Pose-Estimation) provides person detection result of COCO val2017 to reproduce our multi-person pose estimation results. Please download from [OneDrive](https://1drv.ms/f/s!AhIXJn_J-blWzzDXoz5BeFl8sWM-)
+**For COCO data**, please download from [COCO download](http://cocodataset.org/#download), 2017 Train/Val is needed for COCO keypoints training and validation. [HRNet-Human-Pose-Estimation](https://github.com/HRNet/HRNet-Human-Pose-Estimation) provides person detection result of COCO val2017  to reproduce our multi-person pose estimation results. Please download from [OneDrive](https://1drv.ms/f/s!AhIXJn_J-blWzzDXoz5BeFl8sWM-)
 Download and extract them under $MMPOSE/data, and make them look like this:
 
 ```
@@ -35,54 +35,6 @@ mmpose
             │-- 000000000285.jpg
             │-- 000000000632.jpg
             │-- ...
-
-```
-
-**For MPII data**, please download from [MPII Human Pose Dataset](http://human-pose.mpi-inf.mpg.de/).
-We have converted the original annotation files into json format, please download them from [mpii_annotations](https://openmmlab.oss-cn-hangzhou.aliyuncs.com/mmpose/datasets/mpii_annotations.tar).
-Extract them under {MMPose}/data, and make them look like this:
-
-```
-mmpose
-├── mmpose
-├── docs
-├── tests
-├── tools
-├── configs
-`── data
-    │── mpii
-        |── annotations
-        |   |── mpii_gt_valid.mat
-        |   |── mpii_test.json
-        |   |── mpii_train.json
-        |   |── mpii_trainval.json
-        |   `── mpii_valid.json
-        `── images
-            |── 000001163.jpg
-            |── 000003072.jpg
-
-```
-
-
-**For MPII-TRB data**, please download from [MPII Human Pose Dataset](http://human-pose.mpi-inf.mpg.de/).
-Please download the annotation files from [mpii_trb_annotations](https://openmmlab.oss-cn-hangzhou.aliyuncs.com/mmpose/datasets/mpii_trb_annotations.tar).
-Extract them under {MMPose}/data, and make them look like this:
-
-```
-mmpose
-├── mmpose
-├── docs
-├── tests
-├── tools
-├── configs
-`── data
-    │── mpii
-        |── annotations
-        |   |── trb_mpi_train.json
-        |   |── trb_mpi_val.json
-        `── images
-            |── 000001163.jpg
-            |── 000003072.jpg
 
 ```
 
@@ -191,7 +143,7 @@ Examples:
 python demo/top_down_img_demo.py \
     configs/top_down/hrnet/coco/hrnet_w48_coco_256x192.py \
     hrnet_w48_coco_256x192/epoch_210.pth \
-    --img-root tests/data/coco/ --json-file tests/data/coco/test_coco.json \
+    --img-root tests/data/ --json-file tests/data/test_coco.json \
     --out-img-root vis_results
 ```
 
@@ -218,7 +170,7 @@ python demo/top_down_img_demo_with_mmdet.py mmdetection/configs/faster_rcnn/fast
     mmdetection/checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth \
     configs/top_down/hrnet/coco/hrnet_w48_coco_256x192.py \
     hrnet_w48_coco_256x192/epoch_210.pth \
-    --img-root tests/data/coco/ \
+    --img-root tests/data/ \
     --img 000000196141.jpg \
     --out-img-root vis_results
 ```
@@ -306,7 +258,7 @@ Here is an example of using 8 GPUs to load ResNet50 checkpoint.
 If you can run MMPose on a cluster managed with [slurm](https://slurm.schedmd.com/), you can use the script `slurm_train.sh`. (This script also supports single machine training.)
 
 ```shell
-./tools/slurm_train.sh ${PARTITION} ${JOB_NAME} ${CONFIG_FILE} ${WORK_DIR}
+./tools/slurm_train.sh ${PARTITION} ${JOB_NAME} ${CONFIG_FILE} ${WORK_DIR} [${GPUS}]
 ```
 
 Here is an example of using 16 GPUs to train ResNet50 on the dev partition in a slurm cluster.
@@ -314,7 +266,7 @@ Here is an example of using 16 GPUs to train ResNet50 on the dev partition in a 
 Assume that `Test` is a valid ${PARTITION} name.)
 
 ```shell
-GPUS=16 GPUS_PER_NODE=8 CPUS_PER_TASK=2 ./tools/slurm_train.sh Test res50 configs/top_down/resnet/coco/res50_coco_256x192.py work_dirs/res50_coco_256x192
+GPUS_PER_NODE=8 CPUS_PER_TASK=2 ./tools/slurm_train.sh Test res50 configs/top_down/resnet/coco/res50_coco_256x192.py work_dirs/res50_coco_256x192 16
 ```
 
 You can check [slurm_train.sh](../tools/slurm_train.sh) for full arguments and environment variables.
