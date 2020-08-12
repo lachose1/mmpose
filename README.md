@@ -2,6 +2,9 @@
     <img src="resources/mmpose-logo.png" width="400"/>
 </div>
 
+## Download Docker Image
+https://drive.google.com/file/d/1e9p85_Ab9YdSpCwxHgejsuGKfsFxFDio/view?usp=sharing
+
 ## Introduction
 
 <div align="left">
